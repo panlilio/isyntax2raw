@@ -334,8 +334,11 @@ class WriteTiles(object):
             # Handle "special" isyntax date/time format
             return datetime.strptime(timestamp, "%Y%m%d%H%M%S.%f")
         except ValueError:
-            # Handle other date/time formats (such as ISO 8601)
-            return parse(timestamp)
+            try:
+                return datetime.strptime(timestamp,"%Y%m%d%H%M%S.%e")
+            except ValueError:
+                # Handle other date/time formats (such as ISO 8601)
+                return parse(timestamp)
 
     def barcode(self):
         pe_in = self.pixel_engine["in"]
