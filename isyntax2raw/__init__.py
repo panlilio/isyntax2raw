@@ -262,13 +262,20 @@ class WriteTiles(object):
         image_type = self.image_type(image_no)
         view = img.source_view
         image_scale_factor = view.scale
+        
+        #hotfix for timeout error with empty compression methods in label and macro images
+        if len(img.lossy_image_compression_method)==0:
+            compression_ratio = ""
+         else
+            compression_ratio = img.lossy_image_compression_ratio
+
         image_metadata = {
             "Image type":
                 image_type,
             "Lossy image compression method":
                 img.lossy_image_compression_method,
             "Lossy image compression ratio":
-                img.lossy_image_compression_ratio,
+                compression_ratio,
             "Image dimension names":
                 view.dimension_names,
             "Image dimension types":
