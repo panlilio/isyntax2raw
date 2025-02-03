@@ -266,7 +266,7 @@ class WriteTiles(object):
         #hotfix for timeout error with empty compression methods in label and macro images
         if len(img.lossy_image_compression_method)==0:
             compression_ratio = ""
-         else
+        else:
             compression_ratio = img.lossy_image_compression_ratio
 
         image_metadata = {
